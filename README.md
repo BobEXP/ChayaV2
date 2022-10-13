@@ -42,7 +42,7 @@ ChayaV2 is for your privacy. ChayaV2 is backed by research (I will publish publi
 ## Features v2
 
 <p align="center" >
-    <img src="https://github.com/BobEXP/ChayaV2/assets/ChayaV2_Banner.png" alt="ChayaV2">
+    <img src="https://raw.githubusercontent.com/BobEXP/ChayaV2/main/assets/ChayaV2_Banner.png" alt="ChayaV2">
 </p>
 
 - [x] **Encryption**: AES-256-GCM *(default - best)*

@@ -490,7 +490,7 @@ async def run_updater():
     status(2, "Updating Your Script. DO NOT Exit!")
     try:
         status(2, "Running: update.py")
-        run_cmd("python update.py")
+        await run_cmd("python update.py")
         exit()
     except Exception as e:
         status(3, f"Unable to start: updater.py\n{e}\nEXITING!\n")

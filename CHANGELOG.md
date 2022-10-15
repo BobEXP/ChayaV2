@@ -1,6 +1,13 @@
 # Version 2.0
 
-## chaya.py
+### Version 2.0.0.1
+
+- [x] **Improved**: simplified updater
+- [x] **Improved**: exit script after run updater
+
+## Version 2.0.0.0
+
+### chaya.py
 - [x] **Removed**: argument: silent
 - [x] **Removed**: argument: gcm
 - [x] **Removed**: argument auto runner
@@ -20,29 +27,29 @@
 - [x] **Improved**: compression only available for linux
 - [x] **Fixed**: base64 padding while payload decryption
 
-## core :: colors.py
+### core :: colors.py
 - [x] **Add**: status notifications
 - [x] **Improved**: color implementation
 
-## core :: utils.py
+### core :: utils.py
 - [x] **Removed**: status message function
 - [x] **Add**: new banner
 - [x] **Add**: text chunker
 - [x] **Improved**: code quality
 - [x] **Improved**: async files gather
 
-## installer.py
+### installer.py
 - [x] **Add**: asyncio support
 
-## updater :: update.py
+### updater :: update.py
 - [x] **Add**: new repository references
 
-## requirements.txt
+### requirements.txt
 - [x] **Removed**: `image-quality`
 - [x] **Removed**: `pyfiglet`
 - [x] **Add**: `asyncio`
 
-## analytics
+### analytics
 
 Analytics support is *suspended* until numpy developers get their shit stable.
 

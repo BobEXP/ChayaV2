@@ -442,16 +442,19 @@ async def run_manager() -> None:
 
 
 # Function > GitHub Script Version
-def github_version() -> int:
+async def github_version() -> int:
     runtime = current_runtime()
     url = f"https://raw.githubusercontent.com/BobEXP/ChayaV2/{runtime}/VERSION.txt"
-    response = urllib.request.urlopen(url)
-    for content in response:
-        return int(content)
+    try:
+        response = urllib.request.urlopen(url)
+        for content in response:
+            return int(content)
+    except Exception as e:
+        raise e
 
 
 # Function > Current Script Version
-def current_version() -> int:
+async def current_version() -> int:
     version_number = 0
     v_path = str(Path.cwd()) + "/VERSION.txt"
     v_path = convert_to_path(v_path)
@@ -461,34 +464,43 @@ def current_version() -> int:
 
 
 # Function > Compare Current Version
-def version_check() -> None:
-    current_v, github_v = current_version(), github_version()
+async def version_check() -> int:
+    current_v, github_v = await current_version(), await github_version()
     if current_v < github_v:
-        status(2, "Update Available!")
+        status(0, f"  [ Version: {c_red}Outdated")
+        return 0
     elif current_v == github_v:
-        status(2, "You have the latest updates\n")
+        status(0, f"  [ Version: {c_green}Latest\n")
+        return 1
     elif current_v > github_v:
-        status(2, "You are runnnig ahead of the github version!\n")
+        status(0, f"  [ Version: {c_blue}Ahead\n")
+        return 2
 
 
 # Function > Download Updater
 async def download_updater():
     runtime = current_runtime()
-    url = f"https://raw.githubusercontent.com/BobEXP/ChayaV2/{runtime}/updater/update.py"
+    url = f"https://raw.githubusercontent.com/BobEXP/ChayaV2/{runtime}/update.py"
     await download_file(url, "req")
-    run_cmd(f"mv {str(Path.cwd()).replace('core/utils.py', 'downloads/update.py')} {str(Path.cwd()).replace('core/utils.py', 'updater/update.py')}")
 
 
 # Function > Run Updater
 async def run_updater():
-    await download_updater()
-    status(2, "Updating Your Script. DO NOT Exit!")
-    try:
-        status(2, "Running: updater/update.py")
-        run_cmd("python updater/update.py")
-        exit()
-    except Exception as e:
-        status(3, f"Unable to start: update/updater.py\n{e}\nEXITING!\n")
+    check_internet = await internet_on()
+    match check_internet:
+        case True:
+            await download_updater()
+            status(2, "Updating Your Script. DO NOT Exit!")
+            try:
+                status(2, "Running: update.py")
+                await run_cmd("python update.py")
+                exit()
+            except Exception as e:
+                status(3, f"Unable to start: updater.py\n{e}\nEXITING!\n")
+                exit()
+        case False:
+            status(3, "Cannot Update: You Are Offline")
+            exit()
 
 
 # Function > Chaya Help
@@ -614,7 +626,13 @@ def arg_setter(args) -> None:
 async def chaya_start() -> None:
     clear()
     await banner()
-
+    internet_status = await internet_on()
+    if internet_status:
+        version_status = await version_check()
+        match version_status:
+            case 0:
+                status(3, f"\nTo Update Please Run: {c_yellow}python chaya.py -update")
+    
     # start argument parser
     parser = ArgumentParser(description="ChayaV2 Argument Parser", add_help=False)
 

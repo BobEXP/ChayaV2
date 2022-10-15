@@ -480,9 +480,8 @@ async def version_check() -> int:
 # Function > Download Updater
 async def download_updater():
     runtime = current_runtime()
-    url = f"https://raw.githubusercontent.com/BobEXP/ChayaV2/{runtime}/updater/update.py"
+    url = f"https://raw.githubusercontent.com/BobEXP/ChayaV2/{runtime}/update.py"
     await download_file(url, "req")
-    run_cmd(f"mv {str(Path.cwd()).replace('core/utils.py', 'downloads/update.py')} {str(Path.cwd()).replace('core/utils.py', 'updater/update.py')}")
 
 
 # Function > Run Updater
@@ -490,11 +489,11 @@ async def run_updater():
     await download_updater()
     status(2, "Updating Your Script. DO NOT Exit!")
     try:
-        status(2, "Running: updater/update.py")
-        run_cmd("python updater/update.py")
+        status(2, "Running: update.py")
+        run_cmd("python update.py")
         exit()
     except Exception as e:
-        status(3, f"Unable to start: update/updater.py\n{e}\nEXITING!\n")
+        status(3, f"Unable to start: updater.py\n{e}\nEXITING!\n")
 
 
 # Function > Chaya Help
@@ -625,7 +624,7 @@ async def chaya_start() -> None:
         version_status = await version_check()
         match version_status:
             case 0:
-                status(3, f"\nTo Update Please Run: {c_yellow} updater/update.py")
+                status(3, f"\nTo Update Please Run: {c_yellow}python chaya.py -update")
     
     # start argument parser
     parser = ArgumentParser(description="ChayaV2 Argument Parser", add_help=False)

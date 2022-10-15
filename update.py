@@ -6,7 +6,7 @@ from core.utils import *
 async def init() -> None:
 	runtime = current_runtime()
 	url = f"https://github.com/BobEXP/ChayaV2/archive/refs/heads/{runtime}.zip"
-	await download_file(url, "req")
+	await download_file(url, "wget")
 	status(2, "Please replace the current archive with downloaded archive.")
 
 

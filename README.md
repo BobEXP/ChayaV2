@@ -131,29 +131,14 @@ python3 chaya.py -enc
 
 ### Issues - v2
 
-- None
+- Updater Fix
+- Update check fix
 
-## Future Plan
-
-4tteck Le w0lrd
 
 ## License
 
 ChayaV2 is licensed under <a href="https://github.com/BobEXP/ChayaV2/blob/main/LICENSE">AGPLv3</a>
 
-I give you permission to use this script for irresponsible / non-responsible illegal cyber activities, cyber attacks & cyber warfare. I'm not responsible for any illegal cyber activities, cyber attacks & cyber warfare that others conduct.
-
-- [x] My Advice = **PLEASE USE FOR EDUCATIONAL PURPOSES**
-- [x] My Advice != **PLEASE DO CYBER ATTACKS**
-- [x] My Advice != **PLEASE DO CYBER WAR** (not)
-- [x] My Advice != **PLEASE DO ILLEGAL HACKING**
-- [x] My Advice != **PLEASE DO LEAK DATA**
-
-LULZ
-
-## Contributions
-
-Do whatever you want. Just give back good changes.
 
 ## Support ChayaV2
 

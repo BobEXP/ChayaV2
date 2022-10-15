@@ -149,7 +149,7 @@ def utf8len(s):
 # Function -> File downloader
 async def download_file(url: str, download_with: str, dest=None) -> None:
 	filename = url.split('/')[-1]
-	filepath = f"{str(Path.cwd()).replace('core/utils.py', '')}{filename}"
+	filepath = str(Path.cwd()) + filename
 	filepath = convert_to_path(filepath)
 	if download_with == "wget":
 		try:

@@ -486,14 +486,21 @@ async def download_updater():
 
 # Function > Run Updater
 async def run_updater():
-    await download_updater()
-    status(2, "Updating Your Script. DO NOT Exit!")
-    try:
-        status(2, "Running: update.py")
-        await run_cmd("python update.py")
-        exit()
-    except Exception as e:
-        status(3, f"Unable to start: updater.py\n{e}\nEXITING!\n")
+    check_internet = await internet_on()
+    match check_internet:
+        case True:
+            await download_updater()
+            status(2, "Updating Your Script. DO NOT Exit!")
+            try:
+                status(2, "Running: update.py")
+                await run_cmd("python update.py")
+                exit()
+            except Exception as e:
+                status(3, f"Unable to start: updater.py\n{e}\nEXITING!\n")
+                exit()
+        case False:
+            status(3, "Cannot Update: You Are Offline")
+            exit()
 
 
 # Function > Chaya Help

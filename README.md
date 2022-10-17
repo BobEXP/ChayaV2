@@ -159,8 +159,10 @@ Only works for Linux - not tested extensively!
 
 #### Guided Demo v2
 
-<p align="center" >
-    <img src="https://raw.githubusercontent.com/BobEXP/ChayaV2/main/assets/video_banner.png" alt="ChayaV2 Demo">
+<p align="center">
+    <a href="https://youtu.be/qGu0Vmw4YNQ" title="ChayaV2_Demo">
+      <img src="https://raw.githubusercontent.com/BobEXP/ChayaV2/main/assets/video_banner.png" alt="ChayaV2 Demo">
+    </a>
 </p>
 
 ### Output Data

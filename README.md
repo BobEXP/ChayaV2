@@ -40,10 +40,6 @@ ChayaV2 is for your privacy backed by research.
 
 ## Features v2
 
-<p align="center" >
-    <img src="https://raw.githubusercontent.com/BobEXP/ChayaV2/main/assets/ChayaV2_Banner.png" alt="ChayaV2">
-</p>
-
 - [x] **Encryption**: AES-256-GCM *(default - best)*
 - [x] **Steganography Mode**: Least Significant Bit (LSB)
 - [x] **Steganography Mode**: Least Significant Bit + Random Linked Pixels (LSB-LPS) *(default - best)*

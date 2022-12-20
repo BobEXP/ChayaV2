@@ -29,12 +29,26 @@ def text_chunker(msg: str, n: int) -> []:
 
 
 # check internet connection
-async def internet_on() -> bool:
-	try:
-		req = requests.get("https://www.google.com/", timeout=10)
-		return True
-	except Exception as e:
-		return False
+
+async def internet_on():
+    try:
+        # Make a request to Google's favicon using a shorter timeout
+        response = requests.get('https://www.google.com/favicon.ico', timeout=0.5)
+
+        # If the request was successful (status code 200),
+        # the internet is connected
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    except requests.exceptions.ConnectionError:
+        # If a ConnectionError occurred, it means that the request failed
+        # due to a problem with the connection
+        return False
+    except requests.exceptions.Timeout:
+        # If a Timeout occurred, it means that the request took longer
+        # than the specified timeout
+        return False
 
 
 # current runtime
@@ -112,18 +126,13 @@ def generate_random_id() -> int:
 
 
 # Function > Generate SHA-256 hash for file
-def generate_filesignature_sha256(file_path: str):
-	sha256_hash = hashlib.sha256()
-	filehash = ""
-	try:
-		with open(file_path,"rb") as f:
-			# Read and update hash string value in blocks of 4K
-			for byte_block in iter(lambda: f.read(4096),b""):
-				sha256_hash.update(byte_block)
-			filehash = sha256_hash.hexdigest()
-	except Exception as e:
-		raise e
-	return filehash
+def generate_sha256_signature(file_path):
+  with open(file_path, 'rb') as f:
+    sha256_hash = hashlib.sha256()
+    # read the file in blocks of 4KB
+    for byte_block in iter(lambda: f.read(4096), b""):
+      sha256_hash.update(byte_block)
+    return str(sha256_hash.hexdigest())
 
 
 # Function > Get current time in Hour:Minute:Second format
